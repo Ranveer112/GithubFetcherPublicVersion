@@ -1,1 +1,4 @@
-A project dedicated to my friend.
+A project dedicated to my dear friend. 
+
+
+TODO - With some instructions to use
