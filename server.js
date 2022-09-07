@@ -155,12 +155,12 @@ async function getMatchingFiles(req, queryType) {
 app.get('/fetchByRegex/:userName/:repoName/:regex/:counts/:queryId', async (req, res) => {
   getMatchingFiles(req, queryMarkers.RegexMatchQuery)
     .then((result) => res.send(result))
-    .catch((result) => res.send(result));
+    .catch((result) => res.send([[false], [], req.params["queryId"]]));
 })
 
 app.get('/fetchBySim/:userName/:repoName/:similarityString/:counts/:queryId', async (req, res) => {
   getMatchingFiles(req, queryMarkers.SimilarityMatchQuery)
     .then((result) => res.send(result))
-    .catch((result) => res.send(result));
+    .catch((result) => res.send([[false], [], req.params["queryId"]]));
 })
 

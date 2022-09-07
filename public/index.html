@@ -13,7 +13,7 @@
 </head>
 <style>
     body {
-        background-color:rgb(15, 13, 56);
+        background-color: rgb(15, 13, 56);
         font-family: 'Roboto Mono', monospace;
         color: rgb(170, 255, 0);
     }
@@ -54,6 +54,10 @@
         justify-content: center;
         font-size: x-large;
     }
+    .gifHolder{
+        display: flex;
+        justify-content: center;
+    }
 </style>
 
 <body>
@@ -70,6 +74,7 @@
             <input type="text" id="count">
             <p>Regex</p>
             <input type="text" id="regexOrSimilarityString">
+
         </form>
     </div>
     <div class="submitbuttonHolder">
@@ -82,11 +87,13 @@
         </button>
     </div>
     <div class="outputHolder">
-        <div class="output">
 
+        <div class="output">
         </div>
     </div>
-
+    <div class="gifHolder">
+        <img src="loading.gif" alt="loadinggif" style="width:48px;height:48px;" hidden>
+    </div>
     <script src="index.js"></script>
 </body>
 

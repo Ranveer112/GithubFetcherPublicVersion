@@ -11,7 +11,8 @@
         repoName: "#reponame",
         count: "#count",
         textInput: "#regexOrSimilarityString",
-        output: ".output"
+        output: ".output",
+        loadingGIF: ".gifHolder",
     }
     let anticipatedQueryType;//{0 for regex match, 1 for similariy match
     let latestQueryId = 0; //denotes the id for the latest query
@@ -54,14 +55,21 @@
             }
 
         }
-        console.log(url);
         outputForm.innerHTML = "";
+        let loadingGIFHolder = document.querySelector(idAndClassNames.loadingGIF);
+        outputForm.appendChild(loadingGIFHolder);
+        let loadingGIFImage = loadingGIFHolder.children[0];
+        loadingGIFImage.hidden = false
         let list = document.createElement("ul");
         const serverRequest =
             fetch(url)
-                //there could potentially still be error but 
-                //the status is in result[0]
-                .then((result) => result.json())
+                .then((result) => {
+                    loadingGIFImage.hidden = false
+                    document.querySelector("body").appendChild(loadingGIFHolder);
+                    outputForm.innerHTML="";
+                    return result.json()
+                }
+                )
                 .then((result) => {
                     if (latestQueryId === parseInt(result[2])) {
                         if (result[0][0] === false) {
@@ -86,7 +94,9 @@
                 })
                 //some error occured
                 .catch((result) => {
-
+                    loadingGIFImage.hidden = false;
+                    document.querySelector("body").appendChild(loadingGIFHolder);
+                    outputForm.innerHTML="";
                     if (latestQueryId === parseInt(result[2])) {
                         alert(errorMessage);
                     }
