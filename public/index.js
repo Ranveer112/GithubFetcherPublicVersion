@@ -64,7 +64,7 @@
         const serverRequest =
             fetch(url)
                 .then((result) => {
-                    loadingGIFImage.hidden = false
+                    loadingGIFImage.hidden = true
                     document.querySelector("body").appendChild(loadingGIFHolder);
                     outputForm.innerHTML="";
                     return result.json()
@@ -94,7 +94,7 @@
                 })
                 //some error occured
                 .catch((result) => {
-                    loadingGIFImage.hidden = false;
+                    loadingGIFImage.hidden = true;
                     document.querySelector("body").appendChild(loadingGIFHolder);
                     outputForm.innerHTML="";
                     if (latestQueryId === parseInt(result[2])) {
